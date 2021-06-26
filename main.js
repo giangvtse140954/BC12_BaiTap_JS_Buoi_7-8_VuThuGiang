@@ -11,7 +11,7 @@ for (
 }
 var arr = document.getElementsByClassName('ele');
 
-function validateNull() {
+function validate() {
   for (var i = 0; i < arr.length; i++) {
     if (arr[i].value === '') {
       getEle('err1').innerHTML = 'Vui lòng nhập đầy đủ thông tin';
@@ -40,7 +40,7 @@ function refresh() {
 // bai 1
 function sumPositiveNums() {
   var sum = 0;
-  if (!validateNull()) {
+  if (!validate()) {
     return;
   }
   for (var i = 0; i < arr.length; i++) {
@@ -55,7 +55,7 @@ function sumPositiveNums() {
 // bai 2
 function countPositiveNums() {
   var count = 0;
-  if (!validateNull()) {
+  if (!validate()) {
     return;
   }
   for (var i = 0; i < arr.length; i++) {
@@ -69,7 +69,7 @@ function countPositiveNums() {
 
 // bai 3
 function findMinimumNum() {
-  if (!validateNull()) {
+  if (!validate()) {
     return;
   }
   var minimum = arr[0].value;
@@ -84,7 +84,7 @@ function findMinimumNum() {
 
 // bai 4
 function findPositiveMinimumNum() {
-  if (!validateNull()) {
+  if (!validate()) {
     return;
   }
   var minimum = arr[0].value;
@@ -92,7 +92,7 @@ function findPositiveMinimumNum() {
     if (minimum < 0) {
       minimum = arr[i].value;
     }
-    if (Number(arr[i].value) < Number(minimum) && arr[i].value >= 0) {
+    if (Number(arr[i].value) < Number(minimum) && arr[i].value > 0) {
       minimum = arr[i].value;
     }
   }
@@ -105,13 +105,13 @@ function findPositiveMinimumNum() {
 
 // bai 5
 function findLastEvenNum() {
-  if (!validateNull()) {
+  if (!validate()) {
     return;
   }
 
   var even = arr[0].value;
   for (var i = 0; i < arr.length; i++) {
-    if (arr[i].value % 2 === 0 && arr) {
+    if (arr[i].value % 2 === 0 && arr[i].value != 0) {
       even = arr[i].value;
     }
   }
@@ -130,7 +130,7 @@ getEle('close').onclick = function () {
   getEle('swap').style.display = 'none';
 };
 function execute() {
-  if (!validateNull()) {
+  if (!validate()) {
     return;
   }
   var i1 = getEle('index1').value;
@@ -156,7 +156,7 @@ function execute() {
 
 // bai 7
 function sortArr() {
-  if (!validateNull()) {
+  if (!validate()) {
     return;
   }
   var tmp = [];
@@ -184,7 +184,7 @@ function sortArr() {
 
 // bai 8
 function findFirst() {
-  if (!validateNull()) {
+  if (!validate()) {
     return;
   }
   var result = -1;
@@ -206,6 +206,33 @@ function findFirst() {
     }
   }
 
+  getEle('err1').innerHTML = '';
+  getEle('ket1').innerHTML = 'Kết quả: ' + result;
+}
+
+// bai 10
+function compare() {
+  if (!validate()) {
+    return;
+  }
+  var soDuong = 0;
+  var soAm = 0;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i].value > 0) {
+      soDuong++;
+    }
+    if (arr[i].value < 0) {
+      soAm++;
+    }
+  }
+  var result = '';
+  if (soDuong > soAm) {
+    result = 'Số dương nhiều hơn số âm';
+  } else if (soAm > soDuong) {
+    result = 'Số âm nhiều hơn số dương';
+  } else {
+    result = 'Số âm bằng số dương';
+  }
   getEle('err1').innerHTML = '';
   getEle('ket1').innerHTML = 'Kết quả: ' + result;
 }
